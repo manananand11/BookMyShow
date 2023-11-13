@@ -6,6 +6,8 @@ import MovieSelector from "./MovieSelector";
 import SlotSelector from "./SlotSelector";
 import SeatSelector from "./SeatSelector";
 import LastBookingDetails from "./LastBookingDetails";
+import BASE_URL from "./config";
+const apiBookingUrl = `${BASE_URL}/api/booking`;
 
 const App = () => {
   const dummyMovies = data.movies;
@@ -21,7 +23,7 @@ const App = () => {
 
   useEffect(() => {
     // Fetch the last booking details from the API
-    fetch("/api/booking")
+    fetch(apiBookingUrl)
       .then((response) => response.json())
       .then((data) => {
         if (data.message === "No previous booking found") {
@@ -50,13 +52,14 @@ const App = () => {
 
   // Function to handle the booking process
   const handleBooking = () => {
+    const seatCounts = Object.values(selectedSeats);
     if (!selectedMovie) {
       alert("Please select a movie.");
       return;
     } else if (!selectedSlot) {
       alert("Please select a time slot.");
       return;
-    } else if (Object.keys(selectedSeats).length === 0) {
+    } else if (!(seatCounts.some((count) => count > 0))) {
       alert("Please select at least one seat to book.");
       return;
     }
@@ -66,7 +69,7 @@ const App = () => {
       slot: selectedSlot,
     };
 
-    fetch("http://localhost:8080/api/booking", {
+    fetch(apiBookingUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -135,7 +138,7 @@ const App = () => {
             {successMessage && <p>{successMessage}</p>}
           </div>
         </div>
-        {/* Component for displaying the last booking details */}
+{/* Component for displaying the last booking details */}
         <LastBookingDetails lastBooking={lastBooking} dummySeats={dummySeats} />
       </div>
     </div>
