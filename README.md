@@ -1,7 +1,8 @@
 # BookMyShow
 Explore this Movie Booking Web Application, built with React and Express.js. Easily book movie tickets, select showtimes, and enjoy a user-friendly interface. Retrieve your last booking details with real-time feedback. A simple, practical project for movie enthusiasts and developers alike.
 
-## [API Documentation](https://github.com/manananand11/BookMyShow/blob/main/Api%20Schema%20Documentation.md)
+## API Documentation
+- Find the api DOCUMENTATION HERE[API Documentation](https://github.com/manananand11/BookMyShow/blob/main/Api%20Schema%20Documentation.md)
 
 ## Features
 
